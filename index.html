@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>
+      Wayfinding Pro&#0153; Widget http://www.wayfindingpro.com
+    </title>
+    <link rel="stylesheet" href="./themes/wfp.css" type="text/css">
+    <link rel="stylesheet" href="./themes/jquery.mobile.icons.min.css" type="text/css">
+    <link rel="stylesheet" href="./themes/jquery.mobile.structure-1.4.2.min.css" type="text/css">
+    <link rel="stylesheet" href="./themes/wfp_custom.css" type="text/css">
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/jquery.mobile.js"></script>
+    <script type="text/javascript" src="./js/jquery.base64.js"></script>
+    <script type="text/javascript" src="./js/preloadjs.js"></script>
+    <script type="text/javascript" src="./js/easeljs.js"></script>
+    <script type="text/javascript" src="./js/iscroll-zoom.js"></script>
+    <script type="text/javascript" src="./js/wfpLibrary.js"></script>
+    <script type="text/javascript" src="./js/helperFunctions.js"></script>
+    <script type="text/javascript" src="./js/wfpFunctions.js"></script>
+	<!--[if !IE]> -->
+    <script type="text/javascript">
+		// Hammer.plugins.showTouches();
+		/*window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+			alert("Error occured: " + errorMsg);//or any message
+			return false;
+		}*/
+		var prevOrientation = "";
+		$(document).ready(function(){
+			if($(window).height() > $(window).width()){
+				prevOrientation = "portrait";
+			}
+			else{
+				prevOrientation = "landscape";
+			}
+		});
+		window.onresize = function(event) {
+			var newOrientation = "";
+			if($(window).height() > $(window).width()){
+				newOrientation = "portrait";
+			}
+			else{
+				newOrientation = "landscape";
+			}
+			if(prevOrientation.length > 0){
+				if(newOrientation != prevOrientation){
+					//location.reload(true);
+					location.reload();
+				}
+			}
+		}
+    </script>
+	<!-- <![endif]-->
+	<style>
+		.ui-icon-floor:after {
+			background-image: url("./themes/images/floor.png");
+			background-size: 23px 26px;
+			border-radius: 0px;
+			background-color:transparent;
+		}
+
+		.ui-alt-icon.ui-icon-floor:after, .ui-alt-icon.ui-icon-floor:after {
+			background-image: url("./themes/images/floor.png");
+			background-size: 23px 26px;
+			border-radius: 0px;
+			background-color:transparent;
+		}
+
+		.ui-nosvg.ui-icon-floor:after {
+			background-image: url("./themes/images/floor.png");
+			background-size: 23px 26px;
+			border-radius: 0px;
+			background-color:transparent;
+		}
+
+		.ui-nosvg.ui-alt-icon.ui-icon-floor:after, .ui-nosvg.ui-alt-icon.ui-icon-floor:after {
+			background-image: url("./themes/images/floor.png");
+			background-size: 23px 26px;
+			border-radius: 0px;
+			background-color:transparent;
+		}
+		.btnPathStep {
+			margin:1px;
+		}
+	</style>
+  </head>
+  <body>
+    <div data-role="page" data-history="false" id="page2">
+      <div id="p2head" data-role="header" data-position="fixed" data-theme="a" style="height:43px;">
+        <a href="#" onclick="openMenu()" data-icon="bars" data-iconpos="left">Menu</a>
+		<!-- <h1 class="ui-title" role="heading" aria-level="1" style="display:none;">&nbsp;</h1> -->
+		<center style="margin-top:3px;display:none;" id="pathStepBtns">
+			<a data-icon="arrow-l" data-iconpos="left" data-role="button" id="btnPrevStep" class="btnPathStep">&nbsp;Prev</a>
+			<a data-icon="arrow-r" data-iconpos="right" data-role="button" id="btnNextStep" class="btnPathStep">Next&nbsp;</a>
+		</center>
+        <a onclick="openFloorsMenu(this)" data-icon="floor" data-iconpos="left" id="btnFloorsMenu">Floors</a>
+      </div>
+      <div data-role="content" id="pageTwoContent">
+		<!-- <a data-icon="arrow-r" data-iconpos="right" data-role="button" id="btnNextStep" class="btnPathStep">Next&nbsp;</a> -->
+		<!-- <a data-icon="arrow-l" data-iconpos="left" data-role="button" id="btnPrevStep" class="btnPathStep">&nbsp;Prev</a> -->
+        <div id="scroller" data-scroll="true">
+			<canvas id="mapHolder"></canvas>
+		</div>
+        <div id="Directions"></div>
+      </div>
+      <div data-role="popup" data-history="false" id="popupCloseLeft" style="max-width:355px">
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+      </div>
+      <div data-role="footer" id="foot-menu" data-tap-toggle="false" data-position="fixed">
+        <div class="ui-grid-b">
+          <div class="ui-block-a">
+            <button data-corners="false" id="map-start-btn" data-icon="location" data-iconpos="top" data-role="button" style="margin:0;">Start</button>
+          </div>
+          <div class="ui-block-b">
+            <button data-corners="false" data-icon="bullets" data-iconpos="top" style="margin:0;" id="txtbtn" data-role="button" disabled>Show Map</button>
+          </div>
+          <div class="ui-block-c">
+            <button data-corners="false" data-icon="action" data-iconpos="top" id="map-end-btn" data-role="button" style="margin:0;">Destination</button>
+          </div>
+        </div>
+		<!-- <button style="position:absolute;bottom:0px;left:0px;" id="btnIOS">ios</button> -->
+      </div>
+    </div>
+    <div data-role="page" id="page1">
+      <div id="p1head" data-role="header" data-position="fixed" data-theme="a" data-fullscreen="false">
+		<a onclick="openMenu()" data-icon="bars" data-iconpos="left">Menu</a>
+      </div>
+      <div data-role="content" data-scroll="true">
+        <h4 style="margin:0px;margin-bottom:0px;margin-top:0px;">
+          <label for="cboDepart" class="select">Depart From:</label>
+        </h4><a onclick="popupDestinations(true)" data-rel="popup" id='cboDepart' data-role='button'>Select One...</a>
+        <h4 style="margin-top:10px;margin-bottom:0px;">
+          <label for="cboArrive" class="select">Arrive At:</label>
+        </h4><a onclick="popupDestinations(false)" data-rel="popup" id='cboArrive' data-role='button'>Select One...</a> <a id="btnMapIt02" data-role="button" style="margin-left:15px;margin-right:15px;margin-top:50px;display:block;">Get Directions</a><br>
+      </div>
+    </div>
+    <div id="main-popup" data-theme="a">
+      <!-- This popup has its theme explicitly defined via data-theme="a"
+                         because it has no parent from which to automatically inherit
+                         its theme -->
+      <ul id="main-menu" data-role="listview" data-theme="a" data-divider-theme="a" data-icon="false" data-global-nav="demos">
+        <li data-role="list-divider" class="panelHead">Menu
+        </li>
+        <li id='mnu-map'>
+          <a href="#page2">Map</a>
+        </li>
+        <!-- <li id='mnu-home'>
+          <a href="#page2">Home</a>
+        </li> -->
+        <li id='mnu-clear'>
+          <a id='clearMap' href="#page2">Reset Map</a>
+        </li>
+        <li data-icon="delete">
+          <a onclick="closeMenu()">Close</a>
+        </li>
+      </ul>
+    </div>
+    <div id="floors-popup" data-theme="a" >
+      <!-- This popup has its theme explicitly defined via data-theme="a"
+                         because it has no parent from which to automatically inherit
+                         its theme -->
+      <ul id="floors-menu" data-role="listview" data-theme="a" data-divider-theme="a" data-icon="false" data-global-nav="demos">
+        <li data-role="list-divider" class="panelHead">Floors
+        </li>
+        <li><a href="#page2">Floor #1</a></li>
+        <li><a href="#page2">Floor #2</a></li>
+        <li><a href="#page2">Floor #3</a></li>
+        <li data-icon="delete">
+          <a onclick="closeMenu()">Close</a>
+        </li>
+      </ul>
+    </div>
+    <div id="dest-popup" data-theme="a">
+      <!-- This popup has its theme explicitly defined via data-theme="a"
+                         because it has no parent from which to automatically inherit
+                         its theme -->
+      <ul id="dest-menu">
+        <li data-theme="a" id="dest-header" data-role="list-divider" class="panelHead">Select Starting Point
+        </li>
+        <li data-icon="recycle" id="mnu-dir">
+          <a onclick="reverseDirections()" data-val="-1" data-name='Select One...'>Reverse Directions</a>
+        </li>
+        <li data-icon="minus">
+          <a class='destLink' data-val="-1" data-name='Select One...'>Clear Selection</a>
+        </li>
+        <li data-icon="delete">
+          <a onclick="closeDest()" data-rel="close">Close</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

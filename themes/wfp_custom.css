@@ -1,0 +1,310 @@
+#mapContent
+			{
+				overflow: hidden;
+			}
+			.ui-listview .ui-li-icon
+			{
+				max-height: 32px;
+				max-width: 32px;
+				top: .40em;
+			}
+			.ui-body-c, .ui-overlay-c
+			{
+				border: none;
+			}
+			.ui-li-has-icon .ui-btn-inner a.ui-link-inherit
+			{
+				padding-left: 50px;
+			}
+			#mapImg
+			{
+				display: block !important;
+			}
+			#mapLoadingImg
+			{
+				position: fixed;
+				z-index: 1000;
+			}
+			div#cover
+			{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				background-color: rgba(255,0,0,0.1);
+			}
+			.smooth_zoom_preloader
+			{
+				margin: auto !important;
+			}
+			.ui-grid-b {
+				background-color: #ECECE8;
+				}
+			.ui-grid-b>.ui-block-b {
+				border: thin solid black;
+				}
+			.ui-grid-b>.ui-block-b button {
+				border:none;
+				}
+			#debug2
+			{
+				border: 1px solid black;
+			}
+			#Directions {
+				padding:1em;
+				display:block;
+				}
+			#scroller {
+				display: none;
+				}
+			#btnSendLog
+			{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				z-index: 5;
+			}
+			#debug3Container
+			{
+				position: relative;
+				border: 1px solid black;
+				max-height: 390px;
+				overflow: scroll;
+				display: block;
+			}
+			#debug3
+			{
+				position: static;
+				display: inline;
+			}
+			#foot-menu {
+				border: none;
+				}
+			#puArrow
+			{
+				display: block;
+				width: 31px;
+				height: 97px;
+				background: url('images/arrow-right-gray-hover.png') bottom;
+				text-indent: -99999px;
+				margin-left: 5px;
+			}
+			#puArrow:hover
+			{
+				background-position: 0 0;
+			}
+			#pageTwoContent
+			{
+				padding: 0px !important;
+				overflow:hidden;
+
+				
+			}
+			/*
+			//#mapHolder
+			//{
+			//	position: absolute !important;
+			//	top: 0px;
+			//	bottom: 0px;
+			//	left: 0px;
+			//	right: 0px;
+			//	margin: 0px !important;
+			//	
+			//}
+			*/
+			.ui-li-count {
+				top:1.6em;
+				}
+			.ui-listview>.ui-li-static {
+				white-space:normal;
+				}
+			.ui-header .ui-title {
+				margin: 0;
+				} 
+			#mapHolder {
+				margin-left:auto;
+				margin-right:auto;
+				}
+			#main-popup, #floors-popup {
+				min-width:225px;
+				}
+			#dest-popup {
+				min-width:310px;
+				overflow:hidden;
+				}
+			.poiIcon
+			{
+				float: left;
+			}
+			.poiLink
+			{
+				line-height: .7em;
+				vertical-align: middle;
+				position: absolute;
+				top: 50%;
+				margin-top: 17%;
+			}
+			.example-number
+			{
+				position: relative;
+				width: 200px;
+				height: 200px;
+				margin: 50px 0 200px;
+				text-align: center;
+				font: 140px/200px Arial, sans-serif;
+				color: #fff;
+				background: #C91F2C;
+			}
+			.panelHead
+			{
+				font-size: 16px !important;
+				background-color: #003D79;
+			}
+			/* creates the larger triangle */
+			.example-number:before
+			{
+				content: "";
+				position: absolute;
+				bottom: -140px;
+				right: 0;
+				border-width: 0 0 140px 140px;
+				border-style: solid;
+				border-color: transparent #C91F2C;
+			}
+
+			/* creates the larger triangle */
+			.example-number:after
+			{
+				content: "";
+				position: absolute;
+				bottom: -140px;
+				right: 85px;
+				border-width: 0 0 140px 55px;
+				border-style: solid;
+				border-color: transparent #fff;
+			}
+
+			.nodesAccordianParent
+			{
+				overflow-y: auto;
+				margin: 0px -15px;
+				padding: 0px 15px;
+				overflow-x: hidden;
+			}
+			#turn-head
+			{
+				text-align: left;
+				font-size: 1.2em;
+			}
+			#mbHeader
+			{
+				padding-left: 15px;
+				text-align: left;
+			}
+			#mbContent
+			{
+				text-align: center;
+				font-size: 1.2em;
+			}
+			#mbContent a
+			{
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.multiDoc
+			{
+				padding: 0 !important;
+				border: none !important;
+			}
+			.multiDoc h2
+			{
+				margin: 0 !important;
+			}
+
+			.multiDoc a
+			{
+				border-left: none !important;
+				border-right: none !important;
+				border-bottom: none !important;
+			}
+			.multiDoc ul
+			{
+				border-top: none !important;
+			}
+			.multiDoc li
+			{
+
+				border-top: none !important;
+				border-right: none !important;
+			}
+			.multiDoc li>a
+			{
+				border-left-width: 1px;
+			}
+
+			.multiDoc div
+			{
+				border-left: none !important;
+				border-right: none!important;
+				border-bottom: none!important;
+			}
+			.ui-page-active.ui-page-panel
+			{
+				overflow-x: initial !important;
+			}
+			body
+			{
+				overflow: hidden; /* this is important to prevent the whole page to bounce */
+			}
+			.ui-select
+			{
+				width: 100% !important;
+			}
+			.ui-content label
+			{
+				font-weight: bold;
+			}
+			.ui-content h4
+			{
+				margin: 0px;
+				/*margin-bottom:0px;margin-top:0px;*/
+			}
+			.ui-collapsible-content
+			{
+				overflow-y: auto !important;
+				padding: 0px !important;
+			}
+			.ui-collapsible: {
+				margin: 0 !important;
+				}
+			.ui-collapsible-set .ui-collapsible {
+				margin: 0 !important;
+				}
+			.PanelHeader
+			{
+				text-shadow: initial;
+				color: rgb(255, 255, 255) !important;
+			}
+			.ui-page-active.ui-page-panel .ui-listview
+			{
+				margin: -15px -15px 0px -15px !important;
+			}
+			.ui-page-active.ui-page-panel .ui-listview.collapsibleListView
+			{
+				margin: 0px -15px 0px -15px !important;
+			}
+			.nodesAccordian
+			{
+				margin: 0px !important;
+			}
+			
+			.ui-content .ui-listview, .ui-panel-inner>.ui-listview
+			{
+				margin: -1em -1em 0 -1em;
+			}
+			.ui-collapsible-content>.ui-listview
+			{
+				margin: 0;
+			}
