@@ -1,5 +1,6 @@
 # webwidget
-###Wayfinding Pro Web Widget Source###
+###Wayfinding Pro Web Widget Source### 
+####[View Demo](http://maps.wayfindingpro.com/?key=hJDHjDB2)####
 
 This widget is a jumpstart for a web based system using the Wayfinding Pro API.  
 
@@ -24,3 +25,5 @@ The following files contain the code to connect to the API:
 > **helperFunctions.js** - This contains functions that are not specific to wayfinding.  They include URL encoding, getting variables from the URL String, a function to check if an object is empty and distance between points.
    
 > **wfpFunctions.js** -  This is the meat of the project.  It defines all necessary variables, makes the API calls, draws the maps, lines, etc.  
+
+For more information regarding the Wayfinding Pro API, visit http://www.wayfindingpro.com/sdk/using-apis/
