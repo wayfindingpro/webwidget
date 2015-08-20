@@ -11,12 +11,13 @@ Currently, this is setup to accept a GET variable named "key" with your project 
 
 The widget utilizes the following libraries (all of which are included):  
 
-  From [CreateJS](http://createjs.com/Home):
-    [EaselJS](http://createjs.com/easeljs)
-    [PreloadJS](http://createjs.com/preloadjs)
-  [Jquery Mobile] (http://jquerymobile.com)
-  [Jquery] (http://jquery.com)
-  [IScroll] (http://iscrolljs.com)
+* From [CreateJS](http://createjs.com/Home):  
+  + [EaselJS](http://createjs.com/easeljs)  
+  + [PreloadJS](http://createjs.com/preloadjs)  
+* [Jquery Mobile] (http://jquerymobile.com)
+* [Jquery] (http://jquery.com)
+* [IScroll] (http://iscrolljs.com)
+  
 
     
 The following files contain the code to connect to the API:
